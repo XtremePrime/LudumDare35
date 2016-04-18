@@ -63,12 +63,14 @@ void Player::handle_events(sf::Event& event)
 				if(!shift)
 				{
 					if(this->shape != Shape::IRON){
-						shape.type = Shape::IRON;
+						shape = Shape::IRON;
 						std::cout << "[PLAYER]: turned into IRON\n";
+						started = true;
+						power = (float)inventory.get_iron();
+						shape_timer.restart();
 					}
 					else{
 						this->shape = Shape::STANDARD;
-						this->shape
 						std::cout << "[PLAYER]: turned into STANDARD\n";
 					}
 					shift = true;
@@ -76,7 +78,7 @@ void Player::handle_events(sf::Event& event)
 			break;
 			default:
 			break;
-		}   	
+		}
     }
 }
 
@@ -84,8 +86,16 @@ void Player::handle_events(sf::Event& event)
 void Player::update(sf::Time deltaTime)
 {
 	move(deltaTime);
-	
-	if(anim_clock.getElapsedTime().asSeconds() > 0.3f)
+
+	if(shape_timer.getElapsedTime().asSeconds() >= power && started)
+	{
+		started = false;
+		power = 0.0f;
+		shape = Shape::STANDARD;
+		std::cout << "[PLAYER]: Out of power! Back to STANDARD!\n";
+	}
+
+	if(anim_clock.getElapsedTime().asSeconds() > 0.15f)
 	{
 		if(sprite_source.left >= 64*2)
 			sprite_source.left = 0;
@@ -145,7 +155,7 @@ void Player::move2(sf::Time dt)
 		// 	vy -= speed;
 		vy += speed;
 	}
-	
+
 	if(right)
 	{
 		//- Wall coll

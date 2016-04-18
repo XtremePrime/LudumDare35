@@ -11,23 +11,23 @@ enum Direction
 	UP, DOWN, LEFT, RIGHT
 };
 
-enum class ShapeType
+enum class Shape
 {
 	STANDARD, IRON
 };
 
-struct Shape
+/*struct Shape
 {
 	sf::Clock timer;
 	float time; // 10 magib = 1 second
-	bool activated = false;
+	ShapeType type;
 
 	void run()
 	{
 		timer.restart();
 
 	}
-};
+};*/
 
 class Player : public Entity
 {
@@ -41,7 +41,11 @@ private:
 	Direction dir;
 	Inventory inventory;
 
+	//- Shapeshift stuff
 	Shape shape;
+	float power;
+	sf::Clock shape_timer;
+	bool started = false;
 public:
 	int vx = 0, vy = 0;
 	int speed = 150;

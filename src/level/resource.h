@@ -5,7 +5,7 @@
 #include <string>
 
 enum class ResourceType{
-	IRON
+	MAGIBERRIES, IRON 
 };
 
 class Resource

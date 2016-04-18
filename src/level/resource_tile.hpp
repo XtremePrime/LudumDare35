@@ -26,6 +26,9 @@ public:
 			case ResourceType::IRON:
 				res.init("Iron", "vine_3.png");
 			break;
+			case ResourceType::MAGIBERRIES:
+				res.init("Magiberries", "vine_3.png");
+			break;
 			default:
 			break;
 		}
