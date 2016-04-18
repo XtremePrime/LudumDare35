@@ -14,6 +14,13 @@
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="sfml-audio-d" />
+					<Add library="sfml-network-d" />
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/LD35" prefix_auto="1" extension_auto="1" />
@@ -30,7 +37,39 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="include" />
 		</Compiler>
+		<Linker>
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="src/entities/entity.h" />
+		<Unit filename="src/entities/player.cpp" />
+		<Unit filename="src/entities/player.h" />
+		<Unit filename="src/game.cpp" />
+		<Unit filename="src/game.h" />
+		<Unit filename="src/gfx/animation.hpp" />
+		<Unit filename="src/gfx/hud.hpp" />
+		<Unit filename="src/inventory.hpp" />
+		<Unit filename="src/level/level.cpp" />
+		<Unit filename="src/level/level.h" />
+		<Unit filename="src/level/object.hpp" />
+		<Unit filename="src/level/resource.cpp" />
+		<Unit filename="src/level/resource.h" />
+		<Unit filename="src/level/resource_tile.hpp" />
+		<Unit filename="src/level/tile.hpp" />
+		<Unit filename="src/level/village.cpp" />
+		<Unit filename="src/level/village.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/states/gamestate.cpp" />
+		<Unit filename="src/states/gamestate.h" />
+		<Unit filename="src/states/introstate.cpp" />
+		<Unit filename="src/states/introstate.h" />
+		<Unit filename="src/states/state.h" />
+		<Unit filename="src/states/storystate.cpp" />
+		<Unit filename="src/states/storystate.h" />
+		<Unit filename="src/util.hpp" />
+		<Unit filename="src/util/texturemanager.hpp" />
+		<Unit filename="src/util/timer.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
