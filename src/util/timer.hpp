@@ -43,11 +43,11 @@ public:
 		std::stringstream ss;
 		ss << "Time: " << (int)timer.getElapsedTime().asSeconds();
 		text.setString(ss.str());
-		#define set_x(xr) 10+(xr)-(view.getSize().x/2)
+		/*#define set_x(xr) 10+(xr)-(view.getSize().x/2)
 		#define set_y(yr) 10+(yr)-(view.getSize().y/2)
 		text.setPosition(set_x(player.get_pos().x), set_y(player.get_pos().y));
 		#undef set_y
-		#undef set_x
+		#undef set_x*/
 	}
 
 	void render(sf::RenderWindow& window)

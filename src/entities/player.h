@@ -43,14 +43,15 @@ private:
 
 	//- Shapeshift stuff
 	Shape shape;
-	float power;
+
+	float power = 0.0f;
 	sf::Clock shape_timer;
 	bool started = false;
 public:
 	int vx = 0, vy = 0;
 	int speed = 150;
 	bool up = false, down = false, left = false, right = false, action = false, shift = false;
-
+	int shape_sprite = 0;
 
 	void init(sf::Vector2f, int, int);
 	void render(sf::RenderWindow&);
@@ -61,6 +62,9 @@ public:
 
 	Inventory& get_inventory(){ return this->inventory; }
 	Shape get_shape() { return this->shape; }
+	float get_power() { return this->power; }
+	void set_power(float n) { this->power = n; }
+	void erase_movement() { up = down = left = right = false; }
 };
 
 #endif // PLAYER_H

@@ -8,7 +8,8 @@ enum class TileType{
 	GRASS,
 	AIR,
 	WATER,
-	IRON
+	IRON,
+	MAGIBERRIES
 };
 
 class Tile
@@ -21,6 +22,7 @@ protected:
 	sf::FloatRect bbox;
 public:
 	bool is_solid, is_hazard, is_liquid, is_resource;
+	int resource_code = 0;
 
 	Tile(){}
 
@@ -63,12 +65,12 @@ public:
 			break;
 			case TileType::IRON:
 				set(false, false, false, true);
+				resource_code = 2;
 			break;
-		}
-
-		if(is_resource)
-		{
-
+			case TileType::MAGIBERRIES:
+				set(false, false, false, true);
+				resource_code = 1;
+			break;
 		}
 	}
 

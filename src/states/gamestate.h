@@ -12,6 +12,9 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include "../util/sound.hpp"
+#include "SFML/Audio.hpp"
+#include "gameoverstate.h"
 
 class GameState : public State
 {
@@ -20,10 +23,20 @@ private:
 	sf::View view;
 	Timer timer;
 	Level level;
+	const int LEVEL_WIDTH = 27, LEVEL_HEIGHT = 27;
 	Player player;
 	Hud hud;
-	// std::map<std::string, sf::Keyboard::Key> keys;
-	const int LEVEL_WIDTH = 32, LEVEL_HEIGHT = 32;
+	bool paused = false;
+	//- Menu
+	bool in_menu = false;
+	Village* cur_village;
+	int option = 0;
+	sf::Texture menu_texture;
+	sf::Sprite menu_sprite;
+	//- Audio stuff
+	sf::Music music;
+	Sound action_sound, mine_sound, shift_sound;
+
 protected:
 	static GameState* _instance;
 	GameState(){}

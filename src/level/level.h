@@ -25,6 +25,7 @@ public:
 
 	sf::View& get_view(){ return this->view; }
 	Tile& get_tile(int, int, int);
+	Tile& get_resource(int, int, int);
 	std::vector<Tile*> get_tiles() { return this->tiles; }
 	std::vector<Village*> get_villages() { return this->villages; }	
 };

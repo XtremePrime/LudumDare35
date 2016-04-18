@@ -2,6 +2,7 @@
 #include "states/state.h"
 #include "states/introstate.h"
 #include "states/gamestate.h"
+#include "states/gameoverstate.h"
 
 void Game::init()
 {
@@ -13,13 +14,19 @@ void Game::init()
 	view.reset(sf::FloatRect(0, 0, GAME_WIDTH, GAME_HEIGHT));
 
 	//- Init Win Window
-	this->window.create(sf::VideoMode(GAME_WIDTH*SCALE, GAME_HEIGHT*SCALE), "Untitled LD35 Game", sf::Style::Titlebar | sf::Style::Close, settings);
+	this->window.create(sf::VideoMode(GAME_WIDTH*SCALE, GAME_HEIGHT*SCALE), "Kawaii Cat's Adventure - v1.0", sf::Style::Titlebar | sf::Style::Close, settings);
 	this->window.setVerticalSyncEnabled(true);
 	this->window.setKeyRepeatEnabled(false);
 	this->window.setView(view);
 
 	//- Handle RNG
 	srand(time(NULL));
+
+	//- Load favicon
+	#define FAVICON_SIZE 64
+	icon.loadFromFile("res/tiles/cat.png");
+	window.setIcon(FAVICON_SIZE,FAVICON_SIZE,icon.getPixelsPtr());
+	#undef FAVICON_SIZE
 }
 
 void Game::handle_events(sf::Event ev)

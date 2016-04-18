@@ -15,7 +15,8 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 public:
-    void init(std::string, std::string);
+    void init(std::string, std::string, sf::Vector2f, int, int);
+    void render(sf::RenderWindow&);
 };
 
 #endif // RESOURCE_H

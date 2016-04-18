@@ -11,9 +11,9 @@ private:
 	sf::Sprite sprite;
 	std::string name;
 
-	float favour;
 	sf::FloatRect bbox;
 public:
+	float favour;	
 	Village(std::string name, std::string filename, int grid_x, int grid_y);
 	void init(std::string name, std::string filename, int grid_x, int grid_y);
 	void update(sf::Time deltaTime);
