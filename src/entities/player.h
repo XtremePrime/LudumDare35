@@ -11,6 +11,24 @@ enum Direction
 	UP, DOWN, LEFT, RIGHT
 };
 
+enum class ShapeType
+{
+	STANDARD, IRON
+};
+
+struct Shape
+{
+	sf::Clock timer;
+	float time; // 10 magib = 1 second
+	bool activated = false;
+
+	void run()
+	{
+		timer.restart();
+
+	}
+};
+
 class Player : public Entity
 {
 private:
@@ -22,10 +40,12 @@ private:
 	sf::IntRect sprite_source;
 	Direction dir;
 	Inventory inventory;
+
+	Shape shape;
 public:
 	int vx = 0, vy = 0;
 	int speed = 150;
-	bool up = false, down = false, left = false, right = false, action = false;
+	bool up = false, down = false, left = false, right = false, action = false, shift = false;
 
 
 	void init(sf::Vector2f, int, int);
@@ -36,6 +56,7 @@ public:
 	void move2(sf::Time);
 
 	Inventory& get_inventory(){ return this->inventory; }
+	Shape get_shape() { return this->shape; }
 };
 
 #endif // PLAYER_H

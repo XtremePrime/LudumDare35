@@ -24,28 +24,6 @@ void Player::init(sf::Vector2f pos, int w, int h)
 	keys["action"] = sf::Keyboard::C;
 }
 
-void Player::update(sf::Time deltaTime)
-{
-	move(deltaTime);
-	// std::cout << anim_clock.getElapsedTime().asSeconds() << "," << "\n";
-	if(anim_clock.getElapsedTime().asSeconds() > 0.3f)
-	{
-		if(sprite_source.left >= 64*2)
-			sprite_source.left = 0;
-		else
-			sprite_source.left += 64;
-
-		sprite.setTextureRect(sprite_source);
-		anim_clock.restart();
-	}
-	this->bbox = sprite.getGlobalBounds();
-}
-
-void Player::render(sf::RenderWindow& window)
-{
-	window.draw(sprite);
-}
-
 void Player::handle_events(sf::Event& event)
 {
     if(event.type == sf::Event::KeyReleased)
@@ -67,6 +45,9 @@ void Player::handle_events(sf::Event& event)
 			case sf::Keyboard::Space:
 				action = false;
 			break;
+			case sf::Keyboard::Q:
+				shift = false;
+			break;
 			default:
 			break;
 		}
@@ -77,13 +58,51 @@ void Player::handle_events(sf::Event& event)
 		{
 			case sf::Keyboard::Space:
 				action = true;
-				std::cout << "Hit!\n";
+			break;
+			case sf::Keyboard::Q:
+				if(!shift)
+				{
+					if(this->shape != Shape::IRON){
+						shape.type = Shape::IRON;
+						std::cout << "[PLAYER]: turned into IRON\n";
+					}
+					else{
+						this->shape = Shape::STANDARD;
+						this->shape
+						std::cout << "[PLAYER]: turned into STANDARD\n";
+					}
+					shift = true;
+				}
 			break;
 			default:
 			break;
 		}   	
     }
 }
+
+
+void Player::update(sf::Time deltaTime)
+{
+	move(deltaTime);
+	
+	if(anim_clock.getElapsedTime().asSeconds() > 0.3f)
+	{
+		if(sprite_source.left >= 64*2)
+			sprite_source.left = 0;
+		else
+			sprite_source.left += 64;
+
+		sprite.setTextureRect(sprite_source);
+		anim_clock.restart();
+	}
+	this->bbox = sprite.getGlobalBounds();
+}
+
+void Player::render(sf::RenderWindow& window)
+{
+	window.draw(sprite);
+}
+
 
 void Player::move(sf::Time dt)
 {
